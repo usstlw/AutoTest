@@ -27,7 +27,9 @@ public class AddUserTest {
 
 
 
+
         //下边的代码为写完接口的测试代码
+        //发请求，获取结果
         String result = getResult(addUserCase);
 
         /**

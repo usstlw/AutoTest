@@ -38,10 +38,11 @@ public class LoginTest {
 
         SqlSession session = DatabaseUtil.getSqlSession();
         LoginCase loginCase = session.selectOne("loginCase",1);
-        System.out.println(loginCase.toString());
-        System.out.println(TestConfig.loginUrl);
+        System.out.println("loginCase.toString():"+loginCase.toString());
+        System.out.println("TestConfig.loginUrl:"+ TestConfig.loginUrl);
 
         //下边的代码为写完接口的测试代码
+        //第一步发送请求
         String result = getResult(loginCase);
         //处理结果，就是判断返回结果是否符合预期
         Assert.assertEquals(loginCase.getExpected(),result);
@@ -53,8 +54,8 @@ public class LoginTest {
     public void loginFalse() throws IOException {
         SqlSession session = DatabaseUtil.getSqlSession();
         LoginCase loginCase = session.selectOne("loginCase",2);
-        System.out.println(loginCase.toString());
-        System.out.println(TestConfig.loginUrl);
+        System.out.println("loginCase.toString():"+loginCase.toString());
+        System.out.println("TestConfig.loginUrl:"+TestConfig.loginUrl);
 
 
 
@@ -85,7 +86,7 @@ public class LoginTest {
         HttpResponse response = TestConfig.defaultHttpClient.execute(post);
         //获取响应结果
         result = EntityUtils.toString(response.getEntity(),"utf-8");
-        System.out.println(result);
+        System.out.println("result:"+result);
         TestConfig.store = TestConfig.defaultHttpClient.getCookieStore();
         return result;
     }

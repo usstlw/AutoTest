@@ -21,8 +21,8 @@ public class UpdateUserInfoTest {
     public void updateUserInfo() throws IOException, InterruptedException {
         SqlSession session= DatabaseUtil.getSqlSession();
         UpdateUserInfoCase updateUserInfoCase = session.selectOne("updateUserInfoCase",1);
-        System.out.println(updateUserInfoCase.toString());
-        System.out.println(TestConfig.updateUserInfoUrl);
+        System.out.println("updateUserInfoCase.toString():" + updateUserInfoCase.toString());
+        System.out.println("TestConfig.updateUserInfoUrl:" + TestConfig.updateUserInfoUrl);
 
         //下边为写完接口的代码
         int result = getResult(updateUserInfoCase);
@@ -32,7 +32,7 @@ public class UpdateUserInfoTest {
         //获取更新后的结果
         Thread.sleep(2000);
         User user = session.selectOne(updateUserInfoCase.getExpected(),updateUserInfoCase);
-        System.out.println(user.toString());
+        System.out.println("user.toString():"+user.toString());
         Assert.assertNotNull(user);
         Assert.assertNotNull(result);
     }
@@ -41,8 +41,8 @@ public class UpdateUserInfoTest {
     public void deleteUser() throws IOException, InterruptedException {
         SqlSession session = DatabaseUtil.getSqlSession();
         UpdateUserInfoCase updateUserInfoCase = session.selectOne("updateUserInfoCase",2);
-        System.out.println(updateUserInfoCase.toString());
-        System.out.println(TestConfig.updateUserInfoUrl);
+        System.out.println("updateUserInfoCase.toString():" + updateUserInfoCase.toString());
+        System.out.println("TestConfig.updateUserInfoUrl:" + TestConfig.updateUserInfoUrl);
 
 
         //下边为写完接口的代码
@@ -53,7 +53,7 @@ public class UpdateUserInfoTest {
          */
         Thread.sleep(2000);
         User user = session.selectOne(updateUserInfoCase.getExpected(),updateUserInfoCase);
-        System.out.println(user.toString());
+        System.out.println("user.toString():" + user.toString());
 
 
         Assert.assertNotNull(user);
@@ -82,7 +82,7 @@ public class UpdateUserInfoTest {
         HttpResponse response = TestConfig.defaultHttpClient.execute(post);
         //获取响应结果
         result = EntityUtils.toString(response.getEntity(),"utf-8");
-        System.out.println(result);
+        System.out.println("result:" + result);
         return Integer.parseInt(result);
 
     }
